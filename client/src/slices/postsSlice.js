@@ -12,8 +12,7 @@ export const fetchPosts = createAsyncThunk(
   'posts/fetchAllPosts',
   async (arg, thunkAPI) => {
     const response  = await api.fetchPosts();
-    const res = await response.json();
-    return res;
+    return response.data;
   }
 )
 
@@ -35,10 +34,6 @@ export const postsSlice = createSlice({
     getPosts: (state, action) => {
 
     },
-    // createPost: (state, action) => {
-    //   //TODO 
-    //   //createpost change state
-    // }
   },
   extraReducers: {
     //TO DO
@@ -49,14 +44,15 @@ export const postsSlice = createSlice({
       state.status = 'succeeded';
       state.posts = action.payload;
     },
+    [fetchPosts.rejected]: (state, action) => {
+      state.status = 'rejected';
+    },
     [createPost.pending]: (state, action) => {
       state.createStatus = 'posting';
     },
     [createPost.fulfilled]: (state, action) => {
-      console.log("state")
       console.log(state)
-      console.log("payload")
-      console.log(action.payload)
+      
       state.createStatus = 'posted';
       state.posts = [...state.posts, action.payload];
     },
