@@ -5,7 +5,7 @@ import { createTheme, MuiThemeProvider, responsiveFontSizes } from '@material-ui
 
 import Posts from '../components/Posts/Posts';
 import Form from '../components/Form/Form';
-import visions from '../images/visions.png'
+import Navbar from '../components/Navbar/Navbar';
 import useStyles from './styles';
 
 // Actions
@@ -26,13 +26,7 @@ const App = () => {
 
   return (
     <Container maxWidth="lg" >
-      <AppBar className={classes.appBar} position='static' color='inherit'>
-        <MuiThemeProvider theme={theme}>
-          <Typography className={classes.heading} variant='h3' align='center'>Bucket List</Typography>
-        </MuiThemeProvider>
-        
-        <img className={classes.image} src={visions} alt='visions' height='60'/>
-      </AppBar>
+      <Navbar />
       <Grow in>
         <Container>
           <Grid className={classes.mainContainer} container justifyContent='space-between' alignItems='stretch' spacing={3}>
